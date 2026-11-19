@@ -1,0 +1,9 @@
+# Copy to trust/subprocessors.yml to resolve `subprocessor-undeclared`.
+# Needs trust/dpas/gemini.md (copy workshop/gemini-dpa.example), tracked in Git.
+# Synthetic: use the real legal party and data-processing agreement.
+subprocessors:
+  - provider: gemini
+    party: Example Model Provider Ltd
+    purpose: model inference for driver contract and earnings questions
+    location: United Kingdom
+    dpa_path: trust/dpas/gemini.md

@@ -1,0 +1,7 @@
+# Append to trust/manual.yml to resolve `region-unknown`. Replace `models: []`.
+# Synthetic: confirm the real region from our runtime configuration first.
+models:
+  - provider: gemini
+    model_id: gemini-2.5-flash
+    region: europe-west2
+    reason: Synthetic example. Trust reviewed the driver channel deployment configuration.

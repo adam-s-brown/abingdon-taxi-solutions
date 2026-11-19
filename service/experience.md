@@ -1,6 +1,6 @@
 # Our taxi service
 
-Abgindon Taxi Solutions provides taxi services to customers. Our product
+Abingdon Taxi Solutions provides taxi services to customers. Our product
 direction is AI-first, with experiences for three groups:
 
 | Role | Customer need | Proposed AI capability |

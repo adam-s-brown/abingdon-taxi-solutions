@@ -1,0 +1,11 @@
+# Append to trust/manual.yml to record provider data handling (training and
+# retention). Synthetic facts: replace them with what our contract establishes.
+# Needs trust/terms/gemini.md and trust/deletion/gemini.md (copy the two
+# workshop/gemini-*.example files), tracked in Git before the scan.
+data_handling:
+  - provider: gemini
+    retention: 30
+    training_use: none
+    deletion_path: trust/deletion/gemini.md
+    evidence_path: trust/terms/gemini.md
+    reason: Synthetic example. Trust reviewed the provider terms and deletion procedure.
