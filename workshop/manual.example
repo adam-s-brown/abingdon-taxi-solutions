@@ -1,0 +1,27 @@
+# Copy to trust/manual.yml. Synthetic facts: in a real repository, record
+# only what Trust has verified from the runtime configuration and contracts.
+not_in_scope: []
+models:
+  - provider: openai
+    model_id: gpt-4o-mini
+    region: eu
+    reason: Synthetic example. Trust reviewed the rider support deployment configuration.
+  - provider: gemini
+    model_id: gemini-2.5-flash
+    region: europe-west2
+    reason: Synthetic example. Trust reviewed the driver contracts deployment configuration.
+tools: []
+data_classes: []
+data_handling:
+  - provider: openai
+    retention: 30
+    training_use: none
+    deletion_path: trust/providers/openai.md
+    evidence_path: trust/providers/openai.md
+    reason: Synthetic example. Trust reviewed the provider terms and deletion procedure.
+  - provider: gemini
+    retention: 30
+    training_use: none
+    deletion_path: trust/providers/gemini.md
+    evidence_path: trust/providers/gemini.md
+    reason: Synthetic example. Trust reviewed the provider terms and deletion procedure.
