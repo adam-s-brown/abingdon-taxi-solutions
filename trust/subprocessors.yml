@@ -1,0 +1,13 @@
+# Copy to trust/subprocessors.yml. Synthetic: use the real legal party and
+# data-processing agreement.
+subprocessors:
+  - provider: openai
+    party: Example Rider Model Provider Ltd
+    purpose: model inference for rider booking support
+    location: European Union
+    dpa_path: trust/providers/openai.md
+  - provider: gemini
+    party: Example Driver Model Provider Ltd
+    purpose: model inference for driver contract and earnings questions
+    location: United Kingdom
+    dpa_path: trust/providers/gemini.md
