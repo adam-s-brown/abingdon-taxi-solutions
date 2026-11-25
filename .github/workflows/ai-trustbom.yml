@@ -1,0 +1,52 @@
+# trustbom-generated: version=1.0.4 sha256=eecfbde4b83d6849d0a737bbdd48a65335493a9cdd8303768bc677eeed7bf1ba
+name: AI TrustBOM
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    name: Scan and gate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      checks: write
+    steps:
+      - name: Check out repository history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+
+      - name: Scan and gate
+        uses: ./.github/actions/trustbom
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          fail-on: medium
+          baseline: trust/approvals.yml
+          comment: true
+
+      # The derived files are ignored by Git; reviewers read them here.
+      - name: Upload derived artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ai-trustbom
+          path: |
+            trust/card.md
+            trust/questionnaire.yml
+            trust/findings.sarif
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Write the card to the job summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f trust/card.md ]]; then
+            cat trust/card.md >> "$GITHUB_STEP_SUMMARY"
+          fi

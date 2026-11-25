@@ -1,0 +1,9 @@
+# AI TrustBOM unsigned approval template
+# Run `trustbom scan`, review trust/card.md and its cited evidence, then
+# run `trustbom propose` to write the proposal. Do not edit
+# hashes by hand; a CODEOWNER other than the author approves the pull request.
+# approved_graph_sha: <full reviewed graph fingerprint (64 lowercase hex characters)>
+# approved_by: <Trust reviewer>
+# approved_at: <ISO-8601 timestamp with offset>
+# high_risk: <yes|no>   (EU AI Act: is this a high-risk AI system?)
+# article_50: <yes|no>  (EU AI Act: do the Article 50 transparency duties apply?)

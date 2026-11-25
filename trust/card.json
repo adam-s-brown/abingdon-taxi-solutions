@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "hash_version": 1,
+  "graph_sha": "af97fe1a2d32f61d0010861d6e67288da817d0310747a374c4defd71834de53d",
+  "system": {
+    "name": "abingdon-taxi-solutions",
+    "customer_facing_name": "abingdon-taxi-solutions"
+  },
+  "repo": "abingdon-taxi-solutions",
+  "commit": "a1621de6ee2f8a0c9393776ece8b3e75b0f3d073",
+  "scanned_at": "2026-11-25T17:57:50.090782+00:00",
+  "cli_version": "1.0.4",
+  "detector_packs": [
+    {
+      "name": "assist-dotnet",
+      "version": "1.0.0"
+    },
+    {
+      "name": "assist-go",
+      "version": "1.0.0"
+    },
+    {
+      "name": "assist-java",
+      "version": "1.0.0"
+    },
+    {
+      "name": "assist-js",
+      "version": "1.7.0"
+    },
+    {
+      "name": "assist-python",
+      "version": "1.4.0"
+    },
+    {
+      "name": "data-processing",
+      "version": "1.0.0"
+    },
+    {
+      "name": "raw-http",
+      "version": "1.0.0"
+    }
+  ],
+  "models": [
+    {
+      "provider": "openai",
+      "model_id": "gpt-4o-mini",
+      "source": "inferred",
+      "evidence": [
+        {
+          "path": "config/models.yaml",
+          "start_line": 1,
+          "detector_pack": "assist-js",
+          "rule": "model:openai"
+        },
+        {
+          "path": "requirements.txt",
+          "start_line": 1,
+          "detector_pack": "assist-python",
+          "rule": "package:requirements:openai",
+          "package": "openai",
+          "version": "1.109.1"
+        }
+      ]
+    }
+  ],
+  "tools": [],
+  "mcp_servers": [],
+  "data_flows": [],
+  "controls": [],
+  "eval_gates": [],
+  "eval_results": [],
+  "subprocessors": [],
+  "data_handling": [],
+  "findings": [
+    {
+      "id": "region-unknown",
+      "severity": "medium",
+      "message": "The deployment region for openai could not be determined.",
+      "path": "requirements.txt",
+      "source": "inferred",
+      "evidence": [
+        {
+          "path": "requirements.txt",
+          "start_line": 1,
+          "detector_pack": "assist-python",
+          "rule": "package:requirements:openai",
+          "package": "openai",
+          "version": "1.109.1"
+        }
+      ],
+      "subject": "openai"
+    },
+    {
+      "id": "subprocessor-undeclared",
+      "severity": "medium",
+      "message": "Provider \u0027openai\u0027 has no declared subprocessor.",
+      "source": "inferred",
+      "evidence": [
+        {
+          "path": "config/models.yaml",
+          "start_line": 1,
+          "detector_pack": "assist-js",
+          "rule": "model:openai"
+        },
+        {
+          "path": "requirements.txt",
+          "start_line": 1,
+          "detector_pack": "assist-python",
+          "rule": "package:requirements:openai",
+          "package": "openai",
+          "version": "1.109.1"
+        }
+      ],
+      "subject": "openai"
+    }
+  ],
+  "classification": {
+    "high_risk": "unknown",
+    "article_50": "unknown"
+  },
+  "coverage": {
+    "detector_packs": [
+      {
+        "name": "assist-dotnet",
+        "version": "1.0.0"
+      },
+      {
+        "name": "assist-go",
+        "version": "1.0.0"
+      },
+      {
+        "name": "assist-java",
+        "version": "1.0.0"
+      },
+      {
+        "name": "assist-js",
+        "version": "1.7.0"
+      },
+      {
+        "name": "assist-python",
+        "version": "1.4.0"
+      },
+      {
+        "name": "data-processing",
+        "version": "1.0.0"
+      },
+      {
+        "name": "raw-http",
+        "version": "1.0.0"
+      }
+    ],
+    "ecosystems": [
+      {
+        "name": "python",
+        "support": "supported",
+        "manifests": [
+          "requirements.txt"
+        ]
+      }
+    ],
+    "not_in_scope": [],
+    "method_limits": [
+      "allowlisted_configuration_patterns",
+      "manifest_and_lockfile_inventory",
+      "no_ast_analysis",
+      "no_runtime_inspection",
+      "tracked_files_only"
+    ]
+  }
+}
