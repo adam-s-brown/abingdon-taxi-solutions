@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "hash_version": 1,
-  "graph_sha": "af97fe1a2d32f61d0010861d6e67288da817d0310747a374c4defd71834de53d",
+  "graph_sha": "6e01a6ba665e153d648cd6c38f693ce216790c9a0b811417ff723c2895b44d2f",
   "system": {
     "name": "abingdon-taxi-solutions",
     "customer_facing_name": "abingdon-taxi-solutions"
   },
   "repo": "abingdon-taxi-solutions",
-  "commit": "a1621de6ee2f8a0c9393776ece8b3e75b0f3d073",
-  "scanned_at": "2026-11-25T17:57:50.090782+00:00",
+  "commit": "225acced7bc0bc189e47b1ad75651727cbaff870",
+  "scanned_at": "2026-11-25T18:11:31.525171+00:00",
   "cli_version": "1.0.4",
   "detector_packs": [
     {
@@ -42,9 +42,36 @@
   ],
   "models": [
     {
+      "provider": "gemini",
+      "model_id": "gemini-2.5-flash",
+      "region": "europe-west2",
+      "source": "manual",
+      "evidence": [
+        {
+          "path": "config/models.yaml",
+          "start_line": 2,
+          "detector_pack": "assist-js",
+          "rule": "model:gemini"
+        },
+        {
+          "path": "requirements.txt",
+          "start_line": 2,
+          "detector_pack": "assist-python",
+          "rule": "package:requirements:google-genai",
+          "package": "google-genai",
+          "version": "1.41.0"
+        },
+        {
+          "path": "trust/manual.yml",
+          "start_line": 9
+        }
+      ]
+    },
+    {
       "provider": "openai",
       "model_id": "gpt-4o-mini",
-      "source": "inferred",
+      "region": "eu",
+      "source": "manual",
       "evidence": [
         {
           "path": "config/models.yaml",
@@ -59,6 +86,10 @@
           "rule": "package:requirements:openai",
           "package": "openai",
           "version": "1.109.1"
+        },
+        {
+          "path": "trust/manual.yml",
+          "start_line": 5
         }
       ]
     }
@@ -69,51 +100,81 @@
   "controls": [],
   "eval_gates": [],
   "eval_results": [],
-  "subprocessors": [],
-  "data_handling": [],
-  "findings": [
+  "subprocessors": [
     {
-      "id": "region-unknown",
-      "severity": "medium",
-      "message": "The deployment region for openai could not be determined.",
-      "path": "requirements.txt",
-      "source": "inferred",
+      "provider": "gemini",
+      "party": "Example Driver Model Provider Ltd",
+      "purpose": "model inference for driver contract and earnings questions",
+      "location": "United Kingdom",
+      "dpa_path": "trust/providers/gemini.md",
+      "source": "manual",
       "evidence": [
         {
-          "path": "requirements.txt",
-          "start_line": 1,
-          "detector_pack": "assist-python",
-          "rule": "package:requirements:openai",
-          "package": "openai",
-          "version": "1.109.1"
-        }
-      ],
-      "subject": "openai"
-    },
-    {
-      "id": "subprocessor-undeclared",
-      "severity": "medium",
-      "message": "Provider \u0027openai\u0027 has no declared subprocessor.",
-      "source": "inferred",
-      "evidence": [
-        {
-          "path": "config/models.yaml",
-          "start_line": 1,
-          "detector_pack": "assist-js",
-          "rule": "model:openai"
+          "path": "trust/providers/gemini.md"
         },
         {
-          "path": "requirements.txt",
-          "start_line": 1,
-          "detector_pack": "assist-python",
-          "rule": "package:requirements:openai",
-          "package": "openai",
-          "version": "1.109.1"
+          "path": "trust/subprocessors.yml",
+          "start_line": 9
         }
-      ],
-      "subject": "openai"
+      ]
+    },
+    {
+      "provider": "openai",
+      "party": "Example Rider Model Provider Ltd",
+      "purpose": "model inference for rider booking support",
+      "location": "European Union",
+      "dpa_path": "trust/providers/openai.md",
+      "source": "manual",
+      "evidence": [
+        {
+          "path": "trust/providers/openai.md"
+        },
+        {
+          "path": "trust/subprocessors.yml",
+          "start_line": 4
+        }
+      ]
     }
   ],
+  "data_handling": [
+    {
+      "provider": "gemini",
+      "retention": "days",
+      "retention_days": 30,
+      "training_use": "none",
+      "deletion_path": "trust/providers/gemini.md",
+      "source": "manual",
+      "evidence": [
+        {
+          "path": "trust/manual.yml",
+          "start_line": 22
+        },
+        {
+          "path": "trust/providers/gemini.md",
+          "start_line": 1
+        }
+      ]
+    },
+    {
+      "provider": "openai",
+      "retention": "days",
+      "retention_days": 30,
+      "training_use": "none",
+      "deletion_path": "trust/providers/openai.md",
+      "source": "manual",
+      "evidence": [
+        {
+          "path": "trust/manual.yml",
+          "start_line": 16
+        },
+        {
+          "path": "trust/providers/openai.md",
+          "start_line": 1
+        }
+      ]
+    }
+  ],
+  "findings": [],
   "classification": {
     "high_risk": "unknown",
     "article_50": "unknown"
